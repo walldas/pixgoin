@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+	
+{% block head%}
+		
+		
+		
+		
+		
+		<div class ="container">
+			<a href="/start/"  > 
+				<div class="row my-btn blue">
+					<div class="col-md-12">
+						<span>Atėjo</span> 
+					</div>
+				</div>
+			</a>
+			
+			{% for item in col %}
+				<p class="item">{{item}}</p>
+			{% endfor %}
+			
+			
+		</div>
+		
+		
+
+		
+{% endblock %}
+	
+		
+	
+
+		
+		
+		
+		
+		
