@@ -15,6 +15,8 @@ creds = sac.from_json_keyfile_name("seipsheet.json",scope)
 
 app = Flask(__name__)
 
+time_shift = 2
+
 def box_info(data_):
 	on = format(data_)
 	if on =="on":
@@ -29,7 +31,11 @@ def add_to_exel(now):
 		sheet = sheets[0]
 		col = sheet.col_values(2)
 		print(len(col),col[-1])
-		sheet.update_cell(len(col)+1,2,now)
+		a = now[:6]
+		b = format(int(now[6:8])+time_shift)
+		c = now[8:]
+		now_plus =  a + b + c
+		sheet.update_cell(len(col)+1,2,now_plus)
 	except:pass
 
 def update_last_cell(comment,box):
@@ -38,9 +44,9 @@ def update_last_cell(comment,box):
 		sheets = client.open("zymejimai").worksheets()
 		sheet = sheets[0]
 		col = sheet.col_values(2)
-		if len(col[-1]) == 14:
-			data = col[-1] +" ("+ box +") "+ comment
-			sheet.update_cell(len(col),2,data)
+		
+		data = col[-1] +" ("+ box +") "+ comment
+		sheet.update_cell(len(col),2,data)
 	except:pass
 	
 def data_now_():
