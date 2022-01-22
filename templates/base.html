@@ -3,21 +3,80 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<link href="https://fonts.googleapis.com/css?family=Lato|Raleway&display=swap" rel="stylesheet">
-	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-		
-	<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-	<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<!-- <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"> -->
+	<!-- <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' rel='stylesheet'/> -->
+
+	
+	<link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+	<title> Mamytei {{w_state}}</title>
+	
+	<!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+	<!-- <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
 	
 	<link rel="stylesheet" href="../static/css/style.css">
 	
 </head>
-<body>
+<body style= "background-color:rgb{{w_color}}"}>
 
-		<!-- <h1>test</h1> -->
+	<div class="container main">
+		 
+		
+		
+		 <h1 class="main_title">Mamyte<a href="/i/" >i</a> {{w_state}}</h1>
+		<!-- <h1 class="main_title">Mamytei {{w_state}}</h1> -->
+		
+		<table >
+		    
+		{% for week in weeks %}
+			<tr>
+				{% for day in week %}
+				
+				
+					{% if day[6]=="checked" %} 
+						<td style="border: solid 5px rgba{{day[2]}};border-bottom-color:rgb(120,120,120);">
+					{% else %}
+					
+						<td style="border: solid 5px rgba{{day[2]}};">
+						
+					{% endif %}
+						
+						{% if day[4]==1 %}
+							<img src="{{ url_for('static', filename='img/1.jpg') }}">
+						{% elif day[4]==2 %}
+							<img src="{{ url_for('static', filename='img/2.jpg') }}">
+						{% elif day[4]==3 %}
+							<img src="{{ url_for('static', filename='img/3.jpg') }}">
+						{% elif day[4]==4 %}
+							<img src="{{ url_for('static', filename='img/4.jpg') }}">
+						{% endif %}
+					
+					
+						{% if day[5]==1 %}
+							<span class="holyday" >{{day[1]}}</span>
+						{% else %}
+							{{day[1]}}
+						{% endif %}
+					  
+					  
+					  
+					
+					</td>
+				{% endfor %}
+			</tr>
+		{% endfor %}
+		</table>
+		
+		<h2 class="main_title"> {{user_today}}</h2>
+		
+		
+		
+		
+	</div>
+		
+	
 
-		{% block head%}{% endblock %}
+		
 
+
+</body>
 </html>
